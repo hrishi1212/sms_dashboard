@@ -1,0 +1,67 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">User Profile</h4>
+                    </div>
+                    <div class="content">
+                        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address *</label>
+                                        <input type="email" formControlName="email" 
+                                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
+                                        class="form-control border-input" placeholder="Email">
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required" style="color: red;">Email is required</div>
+                                            <div *ngIf="!f.email.errors.required && f.email.errors.email" style="color: red;">Email must be a valid email address</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Password *</label>
+                                        <input type="text" type="password" 
+                                        formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" 
+                                        class="form-control border-input" placeholder="Company" value="Chet">
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required" style="color: red;">Password is required</div>
+                                            <div *ngIf="f.password.errors.minlength" style="color: red;">Password must be at least 8 characters</div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Confirm Password *</label>
+                                        <input type="text" type="password" 
+                                        formControlName="confirmpassword" (change)="checkPasswords(f)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmpassword.errors }"
+                                        class="form-control border-input" placeholder="Last Name" value="Faker">
+                                        <div *ngIf="submitted && f.confirmpassword.errors" class="invalid-feedback">
+                                            <div *ngIf="f.confirmpassword.errors.required" style="color: red;">confirm password is required</div>
+                                            
+                                            <div *ngIf="f.confirmpassword.errors.minlength" style="color: red;">confirm password must be at least 8 characters</div>
+                                        </div>
+                                        <div *ngIf="notSame == true" style="color: red;">oops! Password did not matched</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
